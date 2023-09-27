@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import AddLinkedAccounts from './components/AddLinkedAccounts';
 
-function App() {
+const App = () => {
+  const handleSelectRegion = (region) => {
+    console.log(`Selected region: ${region}`);
+    // Here you can add the logic to go to the next step
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Navigate to="/add-linked-accounts" />} />
+          <Route path="/add-linked-accounts" element={<AddLinkedAccounts onSelectRegion={handleSelectRegion} />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
